@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!--  suite name="Sastasundar Automation Framework" -->
+<suite name="Sastasundar Automation Framework Suitte" >
+<!-- 
+<listeners>
+	<listener
+	class-name="com.crm.qa.ExtentReportListener.ExtentReporterNG"/>
+	</listeners>
+ -->
+  <test name="Sastasundar app test cases">
+    <classes>
+      <class name="com.qa.sasta.test.HomePageTest"/>
+       <class name="com.qa.sasta.test.LoginPageTest"/>
+       <class name="com.qa.sasta.test.HouseholdSuppliesPageTest"/>
+        <class name="com.qa.sasta.test.MyOrdersPageTest"/>
+        <class name="com.qa.sasta.test.shopByHealthPageTest"/>
+     </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

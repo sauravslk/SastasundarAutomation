@@ -5,48 +5,55 @@ import java.io.IOException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import com.qa.sasta.base.TestBase;
 import com.qa.sasta.pages.HomePage;
+import com.qa.sasta.pages.LoginPage;
+
+import junit.framework.Assert;
 
 public class LoginPageTest extends TestBase
 {
-	@FindBy(xpath = "//img[@class='img-responsive']")
-	WebElement sastaimage;
-	
-	@FindBy(xpath="//input[@name='email_mobileno']")
-	WebElement loginemail;
-	
-	@FindBy(xpath="//input[@name='password']")
-	WebElement password;
+	LoginPage loginpage;
+	HomePage homepage;
 
-	@FindBy(id="login_button")
-	WebElement loginbtn;
-
-	@FindBy(linkText="Offers")
-	WebElement offersLink;
-	
 	public LoginPageTest() throws IOException
 	{
-		PageFactory.initElements(driver, this);
+		super();
 	}
 	
-	public boolean validateSastaImage()
+	@BeforeMethod
+	public void setup()
 	{
-		return sastaimage.isDisplayed();
+		initialization();
 	}
 	
-	public boolean validateOffersLink()
+	@Test
+	public void validateSastaImageTest()
 	{
-		return offersLink.isDisplayed();
+		boolean flag = loginpage.validateSastaImage();
+		Assert.assertTrue(flag);
 	}
 	
-	public HomePage login(String name, String pwd) throws IOException
+	@Test 
+	public void offersLinkcheckTest()
 	{
-		loginemail.sendKeys(prop.getProperty("name"));
-		password.sendKeys(prop.getProperty("pwd"));
-		loginbtn.click();
-		return new HomePage();
+		boolean flag = loginpage.offersLinkcheck();
+		Assert.assertTrue(flag);
 	}
 	
+	@Test
+	public void validateLoginButtonTest() throws IOException
+	{
+		homepage = loginpage.validateLoginButton(prop.getProperty("login"),prop.getProperty("password"));
+	}
+	
+	@AfterMethod
+	public void tearDown()
+	{
+		driver.quit();
+	}
 }
